@@ -13,7 +13,7 @@ namespace MVC5HomeWorkW1.Controllers
         // GET: 客戶資料
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList());
+            return View(db.客戶資料.OrderByDescending(x => x.Id).ToList());
         }
 
         // GET: 客戶資料/Details/5
@@ -109,6 +109,19 @@ namespace MVC5HomeWorkW1.Controllers
             db.客戶資料.Remove(客戶資料);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult 搜尋(string keyword)
+        {
+            var data = db.客戶資料.Where(x => x.傳真.Equals(keyword) ||
+                                                                          x.地址.Contains(keyword) ||
+                                                                          x.客戶名稱.Contains(keyword) ||
+                                                                          x.統一編號.Equals(keyword) ||
+                                                                          x.電話.Equals(keyword) ||
+                                                                          x.Email.Equals(keyword))
+                                                   .OrderByDescending(x => x.Id).ToList();
+
+            return View(data);
         }
 
         protected override void Dispose(bool disposing)

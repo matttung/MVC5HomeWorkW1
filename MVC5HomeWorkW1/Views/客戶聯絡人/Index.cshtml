@@ -5,7 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@using (Html.BeginForm("搜尋", "客戶聯絡人", FormMethod.Get))
+{
+    <label>關鍵字 :</label>
+    <input type="text" name="keyword" />
+    <input type="submit" />
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

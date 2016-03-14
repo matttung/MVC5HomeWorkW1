@@ -116,6 +116,17 @@ namespace MVC5HomeWorkW1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult 搜尋(string keyword)
+        {
+            var data = db.客戶聯絡人.Where(x => x.姓名.Equals(keyword) ||
+                                                                                  x.職稱.Equals(keyword) ||
+                                                                                  x.手機.Equals(keyword) ||
+                                                                                  x.電話.Equals(keyword))
+
+                                                   .OrderByDescending(x => x.Id).ToList();
+
+            return View(data);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

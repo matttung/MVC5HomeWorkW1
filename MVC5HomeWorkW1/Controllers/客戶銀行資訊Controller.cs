@@ -116,6 +116,15 @@ namespace MVC5HomeWorkW1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult 搜尋(string keyword)
+        {
+            var data = db.客戶銀行資訊.Where(x => x.帳戶名稱.Contains(keyword) ||
+                                                                                  x.帳戶號碼.Contains(keyword) ||
+                                                                                  x.銀行名稱.Contains(keyword))
+                                                   .OrderByDescending(x => x.Id).ToList();
+
+            return View(data);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
