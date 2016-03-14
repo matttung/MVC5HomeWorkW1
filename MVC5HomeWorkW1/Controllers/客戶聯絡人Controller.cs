@@ -49,6 +49,8 @@ namespace MVC5HomeWorkW1.Controllers
         {
             if (ModelState.IsValid)
             {
+   
+
                 db.客戶聯絡人.Add(客戶聯絡人);
                 db.SaveChanges();
                 return RedirectToAction("Index");
