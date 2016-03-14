@@ -13,7 +13,9 @@ namespace MVC5HomeWorkW1.Controllers
         // GET: 客戶資料
         public ActionResult Index()
         {
-            return View(db.客戶資料.OrderByDescending(x => x.Id).ToList());
+            var 客戶資料 = db.客戶資料.Where(x=>x.是否已刪除 == false)
+                                                          .OrderByDescending(x => x.Id).ToList();
+            return View(客戶資料);
         }
 
         // GET: 客戶資料/Details/5
@@ -106,7 +108,8 @@ namespace MVC5HomeWorkW1.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            客戶資料.是否已刪除 = true;
+            //db.客戶資料.Remove(客戶資料);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
