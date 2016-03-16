@@ -1,15 +1,11 @@
-namespace MVC5HomeWorkW1.Models
+﻿namespace MVC5HomeWorkW1.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(客戶聯絡人MetaData))]
-    public partial class 客戶聯絡人
-    {
-    }
-
-    public partial class 客戶聯絡人MetaData
+    public class 客戶聯絡人UpdateViewModel
     {
         [Required]
         public int Id { get; set; }
@@ -26,7 +22,6 @@ namespace MVC5HomeWorkW1.Models
 
         [StringLength(250, ErrorMessage = "欄位長度不得大於 250 個字元")]
         [Required]
-        [客戶聯絡人Email不能重複(ErrorMessage = "客戶聯絡人Email不能重複")]
         public string Email { get; set; }
 
         [StringLength(50, ErrorMessage = "欄位長度不得大於 50 個字元")]
